@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            CMBox
+            CMController
         </title>
         <link rel="stylesheet" href="style.css">
         <script src="jquery.js"></script>
@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <headertitle>CMBox</headertitle>
+            <headertitle>CMController</headertitle>
         </header>
         <main>
             <nav>
@@ -17,7 +17,7 @@
                     <li class="navnormal">Home</li>
                     <li class="navparent">Clients</li>
                     <ul>
-                        <li>Computers</li>
+                        <li pagename="computers" onclick="getPage(this)">Computers</li>
                         <li>Mobile phones</li>
                     </ul>
                     <li class="navnormal">Servers</li>
@@ -30,11 +30,25 @@
                 </ul>
             </nav>
             <mainpage>
-                test
+                <page>
+                    <pagetitle>Computers</pagetitle>
+                    <div class="threesections">
+                        <section></section>
+                        <section></section>
+                        <section></section>
+                    </div>
+                    <div class="onesection">
+                        <section></section>
+                    </div>
+                    <div class="twosections">
+                        <section></section>
+                        <section></section>
+                    </div>
+                </page>
             </mainpage>
         </main>
         <footer>
-            <watermark>CMBox Open-Source Software</watermark>
+            <watermark>CMController Open-Source Software</watermark>
         </footer>
     </body>
 </html>
