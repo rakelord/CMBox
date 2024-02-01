@@ -8,7 +8,6 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    background-color: pink;
     margin: 0;
     padding: 0;
 }
@@ -75,38 +74,48 @@ mainpage {
     display: flex;
     flex: 1 0;
     padding: 30px;
+    overflow: auto;
 }
 page {
-    flex: 1 0;
-    background-color: rgba(43, 42, 40, .4);
-    border-radius: 30px;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+page > div {
     padding: 30px;
-    overflow: auto;
+    border-radius: 30px;
+    background-color: rgba(43, 42, 40, .4);
 }
 pagetitle {
     font-size: 36px;
     padding: 20px;
 }
-.onesection, .twosections,.threesections {
-    margin: 20px 0px;
+.onesection, .twosections,.threesections, .foursections {
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
 }
 .onesection > section {
     height: 500px;
     width: 100%;
-    background-color: white;
 }
 .twosections > section {
     height: 300px;
     width: 49%;
-    background-color: white;
     display: inline-block;
 }
 .threesections > section {
     height: 300px;
     width: 32%;
-    background-color: white;
+}
+.foursections > section {
+    height: 300px;
+    width: 24%;
+}
+section {
+    border-radius: 20px;
+    background-color: rgba(43, 42, 40, .8);
 }
 
 /* FOOTER */
@@ -118,4 +127,32 @@ footer {
 }
 watermark {
     padding: 10px 40px;
+}
+
+/* SCROLLBAR DESIGN */
+::-webkit-scrollbar {
+    width: 20px;
+    margin-top: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+
+/* TABLE DESIGN */
+.tableDesign {
+    width: 100%;
+    border-collapse: collapse;
 }

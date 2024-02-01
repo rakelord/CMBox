@@ -1,9 +1,3 @@
-function getPage(btn){
-    let pagename = $(btn).attr('pagename');
-    alert(pagename);
-    $('mainpage').html($.get("/pages/"+pagename+".html"));
-}
-
 $(document).ready(function(){
     /* FIX Navigation Bar On Load */
     $('.navparent').each(function(){
@@ -23,6 +17,15 @@ $(document).ready(function(){
             $(this).next().slideToggle(200);
             $(this).addClass('listopen');
             $(this).find('svg').animate({rotate: '180deg'},100);
+        }
+    });
+
+    $('main').on('click','nav ul li',function(){
+        let pagename = $(this).attr('pagename');
+        if (pagename){
+            $.get("../pages/"+pagename+".html",function(html){
+                $('mainpage').html(html);
+            });
         }
     });
 });
