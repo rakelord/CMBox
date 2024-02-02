@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+    /* CHARTJS Settings */
+    Chart.defaults.color = "white";
+    Chart.defaults.borderColor = "black";
+    Chart.defaults.font.size = 16;
+
     /* FIX Navigation Bar On Load */
     $('.navparent').each(function(){
         let newBtnText = this.textContent+'<svg style="padding: 0px 8px" xmlns="http://www.w3.org/2000/svg" fill="lightgrey" viewBox="4 5 15 15" height="12"><title>arrow-down-thick</title><path d="M10,4H14V13L17.5,9.5L19.92,11.92L12,19.84L4.08,11.92L6.5,9.5L10,13V4Z" /></svg><div style="display: inline-block;margin-left: 8px">';
@@ -26,6 +32,9 @@ $(document).ready(function(){
             $.get("../pages/"+pagename+'.html',function(html){
                 $('mainpage').html(html);
             });
+
+            //window.location.search = "page="+pagename;
+            window.history.pushState(null, document.title, "index.html?page="+pagename);
         }
 
         if (!this.classList.contains('navparent')){
@@ -40,8 +49,17 @@ $(document).ready(function(){
     if (startPage){
         let startPageBtn = $('li[pagename="'+startPage+'"]');
         startPageBtn.click();
+        FindNavigationParents(startPageBtn);
     }
     else {
         $('li[pagename="home"]').click();
+    }
+
+    function FindNavigationParents(Btn){
+        let parent = $(Btn).closest('ul').prev();
+        for(let i = 0;i <= 10;i++){
+            parent.click();
+            parent = $(parent).closest('ul').prev();
+        }
     }
 });
