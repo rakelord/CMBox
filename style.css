@@ -27,6 +27,17 @@ main {
     background-image: url("bg.jpg");
     background-size: cover;
 }
+@media only screen and (max-width: 1000px) {
+    main {
+        flex-direction: column;
+    }
+    /*nav {
+        font-size: 48px;
+    }
+    nav > ul li > svg {
+        height: 30px;
+    }*/
+}
 
 /* NAVIGATION */
 nav {
@@ -95,6 +106,7 @@ pagetitle {
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .onesection > section {
     height: 500px;
@@ -109,9 +121,27 @@ pagetitle {
     height: 300px;
     width: 32%;
 }
-.foursections > section {
+.foursections > sections {
+    display: flex;
+    justify-content: space-between;
+    width: 49%;
+}
+.foursections > sections > section {
     height: 300px;
-    width: 24%;
+    display: flex;
+    width: 48%;
+}
+@media only screen and (max-width: 1600px) {
+    .foursections {
+        flex-direction: column;
+    }
+    .foursections > sections {
+        justify-content: center;
+    }
+    .foursections > sections > section {
+        margin: 10px;
+        min-width: 300px;
+    }
 }
 section {
     border-radius: 20px;
