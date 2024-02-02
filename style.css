@@ -78,6 +78,9 @@ nav ul li:active {
 .listopen:hover {
     background-color: rgb(107, 107, 107);
 }
+.selected {
+    background-color: rgba(44, 44, 44, .9);
+}
 
 /* MAIN PAGE */
 mainpage {
@@ -102,7 +105,7 @@ pagetitle {
     font-size: 36px;
     padding: 20px;
 }
-.onesection, .twosections,.threesections, .foursections {
+.onesection, .twosections, .threesections, .foursections {
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -112,10 +115,15 @@ pagetitle {
     height: 500px;
     width: 100%;
 }
-.twosections > section {
-    height: 300px;
+.twosections > sections {
     width: 49%;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+}
+.twosections > sections > section {
+    height: 300px;
+    display: flex;
+    width: 100%;
 }
 .threesections > section {
     height: 300px;
@@ -132,6 +140,19 @@ pagetitle {
     width: 48%;
 }
 @media only screen and (max-width: 1600px) {
+    .twosections {
+        flex-direction: column;
+    }
+    .twosections > sections {
+        justify-content: center;
+    }
+    .twosections > sections {
+        margin: 10px;
+        width: 100%;
+    }
+    .twosections > sections > section {
+        width: 100%;
+    }
     .foursections {
         flex-direction: column;
     }

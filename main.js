@@ -23,9 +23,25 @@ $(document).ready(function(){
     $('main').on('click','nav ul li',function(){
         let pagename = $(this).attr('pagename');
         if (pagename){
-            $.get("../pages/"+pagename+".html",function(html){
+            $.get("../pages/"+pagename+'.html',function(html){
                 $('mainpage').html(html);
             });
         }
+
+        if (!this.classList.contains('navparent')){
+            $(this).closest('nav').find('li').removeClass('selected');
+            $(this).addClass('selected');
+        }
     });
+
+    /* Go to home as standard */
+    let urlParams = new URLSearchParams(window.location.search);
+    let startPage = urlParams.get('page');
+    if (startPage){
+        let startPageBtn = $('li[pagename="'+startPage+'"]');
+        startPageBtn.click();
+    }
+    else {
+        $('li[pagename="home"]').click();
+    }
 });
