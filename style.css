@@ -37,6 +37,7 @@ main {
 nav {
     background-color: rgba(66, 66, 66, .9);
     overflow: auto;
+    user-select: none;
 }
 nav ul {
     text-decoration: none;
@@ -56,6 +57,8 @@ nav ul li {
     padding: 10px 16px;
     cursor: pointer;
     margin-top: 5px;
+    display: flex;
+    align-items: center;
 }
 nav ul li:hover {
     background-color: rgba(44, 44, 44, .7);
@@ -63,6 +66,9 @@ nav ul li:hover {
 nav ul li:active {
     box-shadow: inset 0px 0px 4px 0px black;
     background-color: rgba(58, 58, 58, .5);
+}
+.navtitle {
+    padding-right: 8px;
 }
 .listopen {
     border-bottom-left-radius: 0px;
