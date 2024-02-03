@@ -1,10 +1,11 @@
 <div>
-    <pagetitle><span class="material-symbols-outlined" style="margin-right: 10px;font-size: 32">stack</span>Client types<div class="btn btn-green" style="margin-left: 16px" id="newclienttype"><span class="material-symbols-outlined">add</span></div></pagetitle>
+    <pageheader><pagetitle><span class="material-symbols-outlined" style="margin-right: 10px;font-size: 32">stack</span>Client types</pagetitle><managebuttons><div class="btn btn-green" id="newclienttype"><span class="material-symbols-outlined">add</span></div><div class="btn btn-red" id="deleteclienttypes"><span class="material-symbols-outlined">delete</span></div></managebuttons></pageheader>
     <sections>
         <mainsection>
             <table class="tableDesign">
                 <thead>
                     <tr>
+                        <th style="width: 0;"><input type="checkbox" /></th>
                         <th>ID</th>
                         <th>Type</th>
                         <th>List parent</th>
@@ -14,6 +15,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td><input type="checkbox" /></td>
                         <td>1</td>
                         <td>Computers</td>
                         <td>Clients</td>
