@@ -26,22 +26,22 @@
     </sections>
 </div>
 <script>
-    let newClientTypeForm = {
-        "parameters": [
-            {
-                "displayName": "Type name",
-                "type": "text",
-                "options": null
-            },
-            {
-                "displayName": "List parent",
-                "type": "select",
-                "options": ["Clients","Network"]
-            }
-        ]
-    };
-
     $('#newclienttype').on('click',function(){
+        let newClientTypeForm = {
+            "parameters": [
+                {
+                    "displayName": "Type name",
+                    "type": "text",
+                    "options": null
+                },
+                {
+                    "displayName": "List parent",
+                    "type": "select",
+                    "options": ["Clients","Network"]
+                }
+            ]
+        };
+
         $('modalcontainer').fadeIn(200);
         $('modalinputs').html(addModalForm(newClientTypeForm,"New client type","Create"));
     });
