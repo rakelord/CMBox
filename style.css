@@ -152,6 +152,12 @@ pagetitle {
 .foursections > sections > section:hover {
     transform: scale(1.05);
 }
+graphcontainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 @media only screen and (max-width: 1400px) {
     .twosections {
         flex-direction: column;
@@ -226,41 +232,147 @@ watermark {
 }
 
 /* TABLE DESIGN */
-table {
+.tableDesign {
     width: 100%;
     border-collapse: collapse;
 }
-table tr th {
-    padding: 20px;
+.tableDesign tr th {
+    padding: 16px;
     background-color: rgb(51, 95, 171);
 }
-table tr th:first-child {
+.tableDesign tr th:first-child {
     border-top-left-radius: 10px;
 }
-table tr th:last-child {
+.tableDesign tr th:last-child {
     border-top-right-radius: 10px;
 }
-table tr td {
-    padding: 20px 40px;
+.tableDesign tr td {
+    padding: 16px 40px;
 }
-table tr {
+.tableDesign tr {
     transition: all 0.2s ease;
 }
-table tr:not(first-child):hover{
+.tableDesign tr:not(first-child):hover{
     background-color: rgba(85, 84, 84, .5) !important;
     transform: scale(1.01);
     cursor: pointer;
 }
-table tr:not(first-child):nth-child(even){
+.tableDesign tr:not(first-child):nth-child(even){
     background-color: rgba(65, 65, 65, .5);
 }
 
 /* CHARTJS */
 .doughnutchart {
-    height: calc(100% - 50px) !important;
+    height: calc(100% - 20px) !important;
     width: auto !important;
 }
 .barchart {
-    height: calc(100% - 50px) !important;
+    height: calc(100% - 20px) !important;
     width: auto !important;
+}
+
+/* MODAL */
+modalcontainer {
+    position: fixed;
+    height: calc(100% - 120px);
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+modal {
+    border-radius: 10px;
+    background-color: rgba(43, 42, 40, .9);
+    box-shadow: 0px 0px 16px 0px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+modaltitle {
+    padding: 10px 0px;
+    background-color: rgba(66, 66, 66, .4);
+    width: 100%;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+modalinputs {
+    padding: 20px;
+}
+modaldecision {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+modaldecision > optionbtn {
+    padding: 10px;
+    margin: 8px;
+    cursor: pointer;
+}
+
+/* BUTTON DESIGN */
+.btn {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: 0.2s background-color ease;
+}
+.btn:active {
+	outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.btn-red {
+	background-color: #d9534f;
+    border-color: #d43f3a;
+}
+.btn-red:hover {
+	background-color: #c9302c;
+    border-color: #ac2925;
+}
+.btn-red:active {
+	background-color: #c9302c;
+    border-color: #761c19;
+}
+.btn-blue {
+	background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.btn-blue:hover {
+	background-color: #286090;
+    border-color: #204d74;
+}
+.btn-blue:active {
+	background-color: #286090;
+    border-color: #122b40;
+}
+.btn-green {
+	background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.btn-green:hover {
+	background-color: #449d44;
+    border-color: #398439;
+}
+.btn-green:active {
+	background-color: #449d44;
+    border-color: #255625;
+}
+.btn-orange {
+	background-color: #f0ad4e;
+    border-color: #eea236;
+}
+.btn-orange:hover {
+	background-color: #ec971f;
+    border-color: #d58512;
+}
+.btn-orange:active {
+	background-color: #ec971f;
+    border-color: #985f0d;
 }

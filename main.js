@@ -30,7 +30,7 @@ $(document).ready(function(){
         let pagename = $(this).attr('pagename');
         if (pagename){
             $.get("../pages/"+pagename+'.html',function(html){
-                $('mainpage').html(html);
+                $('page').html(html);
             });
 
             //window.location.search = "page="+pagename;
@@ -54,6 +54,12 @@ $(document).ready(function(){
     else {
         $('li[pagename="home"]').click();
     }
+
+    /* Exit a modal */
+    $('modalcontainer').hide();
+    $('.exitmodal').on('click',function(){
+        $(this).closest('modalcontainer').fadeOut(200);
+    });
 
     function FindNavigationParents(Btn){
         let parent = $(Btn).closest('ul').prev();

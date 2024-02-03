@@ -1,25 +1,27 @@
-<page>
-    <div>
-        <pagetitle>Home</pagetitle>
-        <div class="twosections">
-            <sections>
-                <section>
-                    <sectiontitle>TEST</sectiontitle>
+<div>
+    <pagetitle>Home</pagetitle>
+    <div class="twosections">
+        <sections>
+            <section>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
                     <canvas class="barchart" id="barchart1"></canvas>
-                </section>
-            </sections>
-            <sections>
-                <section>
-                    <sectiontitle>TEST</sectiontitle>
+                </graphcontainer>
+            </section>
+        </sections>
+        <sections>
+            <section>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
                     <canvas class="barchart" id="barchart2"></canvas>
-                </section>
-            </sections>
-        </div>
-        <div class="onesection">
-            <section></section>
-        </div>
+                </graphcontainer>
+            </section>
+        </sections>
     </div>
-</page>
+    <div class="onesection">
+        <section></section>
+    </div>
+</div>
 <script>
     Chart.defaults.color = "white";
     Chart.defaults.font.size = 16;
@@ -48,9 +50,7 @@
         options: {
             plugins: {
                 legend: {
-                    labels: {
-                        color: "white",
-                    }
+                    display: false
                 },
                 datalabels: {
                     color: 'white', // Set the color of the data labels

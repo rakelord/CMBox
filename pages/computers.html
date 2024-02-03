@@ -1,77 +1,87 @@
-<page>
-    <div>
-        <pagetitle>Computers</pagetitle>
-        <div class="foursections">
-            <sections>
-                <section>
-                    <sectiontitle>TEST</sectiontitle>
-                    <canvas class="doughnutchart" id="chartdiv"></canvas>
-                </section>
-                <section>
-                    <sectiontitle>TEST</sectiontitle>
-                    <canvas class="doughnutchart" id="chartdiv2"></canvas>
-                </section>
-            </sections>
-            <sections>
-                <section>
-                    <sectiontitle>TEST</sectiontitle>
-                    <canvas class="doughnutchart" id="chartdiv3"></canvas>
-                </section>
-                <section>
-                    <sectiontitle>TEST</sectiontitle>
-                    <canvas class="doughnutchart" id="chartdiv4"></canvas>
-                </section>
-            </sections>
-        </div>
-        <div class="onesection">
+<div>
+    <pagetitle>Computers</pagetitle>
+    <div class="foursections">
+        <sections>
             <section>
-                <table class="tableDesign">
-                    <thead>
-                        <tr>
-                            <th>TEST1</th>
-                            <th>TEST2</th>
-                            <th>TEST3</th>
-                            <th>TEST4</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                        </tr>
-                        <tr>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                        </tr>
-                        <tr>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                        </tr>
-                        <tr>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                        </tr>
-                        <tr>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                            <td>TEST1</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
+                    <canvas class="doughnutchart" id="chartdiv"></canvas>
+                </graphcontainer>
             </section>
-        </div>
+            <section>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
+                    <canvas class="doughnutchart" id="chartdiv2"></canvas>
+                </graphcontainer>
+            </section>
+        </sections>
+        <sections>
+            <section>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
+                    <canvas class="doughnutchart" id="chartdiv3"></canvas>
+                </graphcontainer>
+            </section>
+            <section>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
+                    <canvas class="doughnutchart" id="chartdiv4"></canvas>
+                </graphcontainer>
+            </section>
+        </sections>
     </div>
-</page>
+    <div class="onesection">
+        <section>
+            <table class="tableDesign" id="computers-table">
+                <thead>
+                    <tr>
+                        <th>TEST1</th>
+                        <th>TEST2</th>
+                        <th>TEST3</th>
+                        <th>TEST4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                    </tr>
+                    <tr>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                    </tr>
+                    <tr>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                    </tr>
+                    <tr>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                    </tr>
+                    <tr>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                        <td>TEST1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
 <script>
+    $('#computers-table').on('click',function(){
+        $('modalcontainer').fadeIn(200);
+    });
+
     var ctx1 = document.getElementById('chartdiv');
     var ctx2 = document.getElementById('chartdiv2');
     var ctx3 = document.getElementById('chartdiv3');
@@ -96,23 +106,22 @@
     };
     var config = {
         type: 'doughnut',
+        plugins: [ChartDataLabels],
         data: data,
         options: {
             plugins: {
                 legend: {
-                    labels: {
-                        color: "white",
-                    }
-                },
-                datalabels: {
+                    position: 'left'
+                }
+            },
+            datalabels: {
                     color: 'white', // Set the color of the data labels
                     anchor: 'center', // Set the position of the data labels
                     align: 'center',  // Set the alignment of the data labels
-                }
             }
-        },
-        plugins: [ChartDataLabels],
+        }
     };
+
     new Chart(ctx1,config);
     new Chart(ctx2,config);
     new Chart(ctx3,config);
