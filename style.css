@@ -158,7 +158,7 @@ mainsection {
     background-color: rgba(43, 42, 40, .9);
 }
 sections {
-    padding-top: 20px;
+    padding: 10px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -304,6 +304,7 @@ watermark {
 
 /* MODAL */
 modalcontainer {
+    z-index: 100;
     position: fixed;
     height: calc(100% - 120px);
     width: 100%;
@@ -315,7 +316,7 @@ modalcontainer {
 modal {
     border-radius: 10px;
     background-color: rgba(43, 42, 40, .9);
-    box-shadow: 0px 0px 16px 0px black;
+    box-shadow: 0px 0px 12px 0px black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
