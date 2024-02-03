@@ -98,7 +98,6 @@ page {
 page > div {
     padding: 30px;
     border-radius: 10px;
-    height: 100%;
     background-color: rgba(43, 42, 40, .4);
     display: flex;
     flex-direction: column;
@@ -107,87 +106,75 @@ pagetitle {
     font-size: 36px;
     padding: 10px;
 }
-.onesection {
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    flex: 1 1;
-    align-items: stretch !important;
-}
-.twosections, .threesections, .foursections {
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.onesection > section {
-    min-height: 300px;
+mainsection {
+    min-height: 500px;
     flex: 1 0;
+    background-color: rgba(43, 42, 40, .9);
 }
-.twosections > sections {
-    width: 49%;
-    display: flex;
-    justify-content: center;
-}
-.twosections > sections > section {
-    height: 300px;
-    display: flex;
-    width: 100%;
-}
-.threesections > section {
-    height: 300px;
-    width: 32%;
-}
-.foursections > sections {
+sections {
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
-    width: 49%;
-}
-.foursections > sections > section {
-    height: 300px;
-    display: flex;
-    width: 48%;
-    transition: all 0.2s ease;
-}
-.foursections > sections > section:hover {
-    transform: scale(1.05);
-}
-graphcontainer {
-    height: 100%;
-    display: flex;
     align-items: center;
 }
-
-@media only screen and (max-width: 1400px) {
-    .twosections {
-        flex-direction: column;
-    }
-    .twosections > sections {
-        justify-content: center;
-    }
-    .twosections > sections {
-        margin: 10px;
-        width: 100%;
-    }
-    .twosections > sections > section {
-        width: 100%;
-    }
-    .foursections {
-        flex-direction: column;
-    }
-    .foursections > sections {
-        justify-content: center;
-    }
-    .foursections > sections > section {
-        margin: 10px;
-        min-width: 300px;
-    }
-}
-section {
+largesection {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    transition: all 0.2s ease;
     border-radius: 10px;
     background-color: rgba(43, 42, 40, .9);
     flex-direction: column;
     align-items: center;
+}
+mediumsection {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    background-color: rgba(43, 42, 40, .9);
+    flex-direction: column;
+    align-items: center;
+}
+smallsection {
+    height: 300px;
+    width: 48%;
+    display: flex;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    background-color: rgba(43, 42, 40, .9);
+    flex-direction: column;
+    align-items: center;
+}
+graphcontainer {
+    padding: 0px 20px;
+    height: calc(100% - 38px);
+    width: calc(100% - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+graphcontainer > canvas {
+    max-height: calc(100% - 40px);
+    width: auto !important;
+}
+
+@media only screen and (max-width: 1400px) {
+    sections {
+        flex-direction: column;
+    }
+    sections > section {
+        width: 100%;
+    }
+    sections > section:not(:first-child){
+        margin-top: 20px;
+    }
+}
+section {
+    width: 49%;
+    justify-content: space-between;
+    display: flex;
 }
 sectiontitle {
     padding: 10px 0px;
@@ -259,16 +246,6 @@ watermark {
 }
 .tableDesign tr:not(first-child):nth-child(even){
     background-color: rgba(65, 65, 65, .5);
-}
-
-/* CHARTJS */
-.doughnutchart {
-    height: calc(100% - 20px) !important;
-    width: auto !important;
-}
-.barchart {
-    height: calc(100% - 20px) !important;
-    width: auto !important;
 }
 
 /* MODAL */

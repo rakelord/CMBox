@@ -1,37 +1,31 @@
 <div>
     <pagetitle>Computers</pagetitle>
-    <div class="foursections">
-        <sections>
-            <section>
-                <sectiontitle>TEST</sectiontitle>
-                <graphcontainer>
-                    <canvas class="doughnutchart" id="chartdiv"></canvas>
-                </graphcontainer>
-            </section>
-            <section>
-                <sectiontitle>TEST</sectiontitle>
-                <graphcontainer>
-                    <canvas class="doughnutchart" id="chartdiv2"></canvas>
-                </graphcontainer>
-            </section>
-        </sections>
-        <sections>
-            <section>
-                <sectiontitle>TEST</sectiontitle>
-                <graphcontainer>
-                    <canvas class="doughnutchart" id="chartdiv3"></canvas>
-                </graphcontainer>
-            </section>
-            <section>
-                <sectiontitle>TEST</sectiontitle>
-                <graphcontainer>
-                    <canvas class="doughnutchart" id="chartdiv4"></canvas>
-                </graphcontainer>
-            </section>
-        </sections>
-    </div>
-    <div class="onesection">
+    <sections>
         <section>
+            <smallsection>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
+                    <canvas id="chartdiv"></canvas>
+                </graphcontainer>
+            </smallsection>
+            <smallsection>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
+                    <canvas id="chartdiv2"></canvas>
+                </graphcontainer>
+            </smallsection>
+        </section>
+        <section>
+            <mediumsection>
+                <sectiontitle>TEST</sectiontitle>
+                <graphcontainer>
+                    <canvas id="chartdiv3"></canvas>
+                </graphcontainer>
+            </mediumsection>
+        </section>
+    </sections>
+    <sections>
+        <mainsection>
             <table class="tableDesign" id="computers-table">
                 <thead>
                     <tr>
@@ -74,8 +68,8 @@
                     </tr>
                 </tbody>
             </table>
-        </section>
-    </div>
+        </mainsection>
+    </sections>
 </div>
 <script>
     $('#computers-table').on('click',function(){
@@ -84,8 +78,7 @@
 
     var ctx1 = document.getElementById('chartdiv');
     var ctx2 = document.getElementById('chartdiv2');
-    var ctx3 = document.getElementById('chartdiv3');
-    var ctx4 = document.getElementById('chartdiv4');
+
     var data = {
         labels: [
             'Red',
@@ -109,6 +102,7 @@
         plugins: [ChartDataLabels],
         data: data,
         options: {
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'left'
@@ -122,8 +116,48 @@
         }
     };
 
+    var ctx4 = document.getElementById('chartdiv3');
+
+    var bardata = {
+        labels: [
+            'Red',
+            'Blue',
+            'Yellow',
+            'Red',
+            'Blue',
+            'Yellow',
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [300, 50, 100, 300, 50, 100],
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+        }]
+    };
+    var barconfig = {
+        type: 'bar',
+        data: bardata,
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    color: 'white', // Set the color of the data labels
+                    anchor: 'center', // Set the position of the data labels
+                    align: 'center',  // Set the alignment of the data labels
+                }
+            }
+        },
+        plugins: [ChartDataLabels],
+    };
+    new Chart(ctx4,barconfig);
+
     new Chart(ctx1,config);
     new Chart(ctx2,config);
-    new Chart(ctx3,config);
-    new Chart(ctx4,config);
 </script>

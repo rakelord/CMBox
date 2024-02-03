@@ -1,26 +1,26 @@
 <div>
     <pagetitle>Home</pagetitle>
-    <div class="twosections">
-        <sections>
-            <section>
+    <sections>
+        <section>
+            <mediumsection>
                 <sectiontitle>TEST</sectiontitle>
                 <graphcontainer>
                     <canvas class="barchart" id="barchart1"></canvas>
                 </graphcontainer>
-            </section>
-        </sections>
-        <sections>
-            <section>
+            </mediumsection>
+        </section>
+        <section>
+            <mediumsection>
                 <sectiontitle>TEST</sectiontitle>
                 <graphcontainer>
                     <canvas class="barchart" id="barchart2"></canvas>
                 </graphcontainer>
-            </section>
-        </sections>
-    </div>
-    <div class="onesection">
-        <section></section>
-    </div>
+            </mediumsection>
+        </section>
+    </sections>
+    <sections>
+        <mainsection></mainsection>
+    </sections>
 </div>
 <script>
     Chart.defaults.color = "white";
@@ -48,6 +48,7 @@
         type: 'bar',
         data: data,
         options: {
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     display: false
