@@ -1,2 +1,2 @@
-# CMBox
+# CMController
 Client Management Database Software
