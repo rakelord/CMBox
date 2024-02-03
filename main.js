@@ -1,3 +1,43 @@
+function exitModal(exitbtn){
+    $(exitbtn).closest('modalcontainer').fadeOut(200);
+}
+
+function addModalForm(formParameters,modalTitle,modalFinish){
+    $('modaltitle').html(modalTitle);
+    let form = '<table class="formTableDesign">';
+    for (let parameter of formParameters['parameters']){
+        form += addModalOption(parameter['displayName'],parameter['type'],parameter['options']);
+    }
+    form += '</table>';
+
+    modalDecisions = "";
+    if (modalFinish == 'Save'){
+        modalDecisions += '<optionbtn class="btn btn-green">SAVE</optionbtn><optionbtn class="btn btn-red" onclick="exitModal(this)">EXIT</optionbtn>';
+    }
+    else {
+        modalDecisions += '<optionbtn class="btn btn-green">CREATE</optionbtn><optionbtn class="btn btn-red" onclick="exitModal(this)">EXIT</optionbtn>';
+    }
+    $('modaldecision').html(modalDecisions);
+
+    return form;
+}
+
+function addModalOption(displayName,type,options){
+    let row = "<tr>";
+    if (type == 'select'){
+        row += '<td>'+displayName+'</td><td><select class="formvalue">';
+        for (let option of options){
+            row += '<option value="'+option+'">'+option+'</option>';
+        }
+        row += '</select></td>';
+        row += '</tr>';
+        return row;
+    }
+    row += '<td>'+displayName+'</td><td><input class="formvalue" type="'+type+'" /></td>';
+    row += '</tr>';
+    return row;
+}
+
 $(document).ready(function(){
 
     /* CHARTJS Settings */
@@ -33,7 +73,6 @@ $(document).ready(function(){
                 $('page').html(html);
             });
 
-            //window.location.search = "page="+pagename;
             window.history.pushState(null, document.title, "index.html?page="+pagename);
         }
 
@@ -43,7 +82,15 @@ $(document).ready(function(){
         }
     });
 
-    /* Go to home as standard */
+    /* Go to home as standard and open the tree if selected is below */
+    function FindNavigationParents(Btn){
+        let parent = $(Btn).closest('ul').prev();
+        for(let i = 0;i <= 10;i++){
+            parent.click();
+            parent = $(parent).closest('ul').prev();
+        }
+    }
+
     let urlParams = new URLSearchParams(window.location.search);
     let startPage = urlParams.get('page');
     if (startPage){
@@ -55,17 +102,4 @@ $(document).ready(function(){
         $('li[pagename="home"]').click();
     }
 
-    /* Exit a modal */
-    $('modalcontainer').hide();
-    $('.exitmodal').on('click',function(){
-        $(this).closest('modalcontainer').fadeOut(200);
-    });
-
-    function FindNavigationParents(Btn){
-        let parent = $(Btn).closest('ul').prev();
-        for(let i = 0;i <= 10;i++){
-            parent.click();
-            parent = $(parent).closest('ul').prev();
-        }
-    }
 });

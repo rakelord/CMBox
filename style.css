@@ -2,7 +2,9 @@ html {
     height: 100vh;
     margin: 0;
     padding: 0;
-    font-family:Arial, Helvetica, sans-serif;
+    /* font-family:Arial, Helvetica, sans-serif; */
+    font-family: Helvetica, sans-serif;
+    /* font-family: 'Open Sans', Verdana, sans-serif; */
     color: white;
 }
 body {
@@ -79,7 +81,7 @@ nav ul li:active {
     background-color: rgb(107, 107, 107);
 }
 .selected {
-    background-color: rgba(44, 44, 44, .9);
+    background-color: rgba(51, 95, 171, .9);
 }
 
 /* MAIN PAGE */
@@ -105,8 +107,12 @@ page > div {
 pagetitle {
     font-size: 36px;
     padding: 10px;
+    display: flex;
+    align-items: center;
 }
 mainsection {
+    border-radius: 10px;
+    width: 100%;
     min-height: 500px;
     flex: 1 0;
     background-color: rgba(43, 42, 40, .9);
@@ -225,7 +231,7 @@ watermark {
 }
 .tableDesign tr th {
     padding: 16px;
-    background-color: rgb(51, 95, 171);
+    background-color: rgba(51, 95, 171, .9);
 }
 .tableDesign tr th:first-child {
     border-top-left-radius: 10px;
@@ -239,13 +245,18 @@ watermark {
 .tableDesign tr {
     transition: all 0.2s ease;
 }
-.tableDesign tr:not(first-child):hover{
+.tableDesign tr:hover{
     background-color: rgba(85, 84, 84, .5) !important;
     transform: scale(1.01);
     cursor: pointer;
 }
-.tableDesign tr:not(first-child):nth-child(even){
+.tableDesign tr:nth-child(even){
     background-color: rgba(65, 65, 65, .5);
+}
+
+/* FORM TABLE DESIGN */
+.formTableDesign {
+    border-spacing: 12px;
 }
 
 /* MODAL */
@@ -352,4 +363,12 @@ modaldecision > optionbtn {
 .btn-orange:active {
 	background-color: #ec971f;
     border-color: #985f0d;
+}
+
+/* STANDARD INPUT DESIGNS */
+input[type=text], input[type=number], input[type=date], select {
+    padding: 12px 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
 }
