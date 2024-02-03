@@ -69,8 +69,18 @@ $(document).ready(function(){
     $('main').on('click','nav ul li',function(){
         let pagename = $(this).attr('pagename');
         if (pagename){
-            $.get("../pages/"+pagename+'.html',function(html){
-                $('page').html(html);
+            $.ajax({
+                type: 'GET',
+                url: "../pages/"+pagename+'.html',
+                success: function(html){
+                    $('page').html(html);
+                },
+                beforeSend: function(){
+                    $('mainpage').children().eq(0).fadeIn(200);
+                },
+                complete: function(){
+                    $('mainpage').children().eq(0).fadeOut(200);
+                }
             });
 
             window.history.pushState(null, document.title, "index.html?page="+pagename);
