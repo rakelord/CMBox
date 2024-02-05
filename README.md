@@ -1,2 +1,2 @@
-# CMController
-Client Management Database Software
+# NexoAssets
+Asset Management Database Software
