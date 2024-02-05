@@ -72,6 +72,7 @@ $(document).ready(function(){
                 type: 'GET',
                 url: "../pages/"+pagename+'.html',
                 success: function(html){
+                    $('title').html("NexoAssets - "+pagename);
                     $('page').html(html);
                 },
                 beforeSend: function(){
