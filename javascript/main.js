@@ -65,6 +65,18 @@ $(document).ready(function(){
         }
     });
 
+    $('navtoggler').on('click',function(){
+        let navtree = $('nav').find('ul:first-child');
+        let navtoggler = $(this).find('span');
+        if ($(navtree).is(':visible')){
+            $(navtoggler).animate({rotate: '90deg'},100);
+        }
+        else {
+            $(navtoggler).animate({rotate: '270deg'},100);
+        }
+        navtree.slideToggle(200);
+    });
+
     $('main').on('click','nav ul li',function(){ /* GET NEW PAGES */
         let pagename = $(this).attr('pagename');
         if (pagename){

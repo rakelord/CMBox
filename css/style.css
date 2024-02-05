@@ -46,6 +46,7 @@ headertitle {
     font-weight: bold;
 }
 main {
+    min-width: 500px;
     display: flex;
     height: calc(100vh - 130px);
     background-image: url("/images/bg.jpg");
@@ -54,6 +55,14 @@ main {
 @media only screen and (max-width: 1000px) {
     main {
         flex-direction: column;
+    }
+    navtoggler {
+        display: flex !important;
+    }
+}
+@media not screen and (max-width: 1000px) {
+    nav > ul {
+        display: block !important;
     }
 }
 
@@ -84,7 +93,7 @@ nav ul li {
     display: flex;
     align-items: center;
 }
-nav ul li:hover {
+nav ul li:hover, navtoggler:hover {
     background-color: rgba(44, 44, 44, .7);
 }
 nav ul li:active {
@@ -99,6 +108,16 @@ nav ul li:active {
 .navicon {
     margin-right: 10px;
     font-size: 18px;
+}
+navtoggler {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+}
+navtoggler > span {
+    rotate: 270deg;
 }
 .listopen {
     border-bottom-left-radius: 0px;
