@@ -25,7 +25,7 @@ function addModalForm(formParameters,modalTitle,modalFinish){
 function addModalOption(displayName,type,options){
     let row = "<tr>";
     if (type == 'select'){
-        row += '<td>'+displayName+'</td><td><select class="formvalue">';
+        row += '<td>'+displayName+'</td><td><select class="formvalue js-example-basic-single">';
         for (let option of options){
             row += '<option value="'+option+'">'+option+'</option>';
         }
