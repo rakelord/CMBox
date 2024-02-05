@@ -1,0 +1,29 @@
+/* TABLE DESIGN */
+.tableDesign {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tableDesign tr th {
+    padding: 16px;
+    background-color: rgba(51, 95, 171, .9);
+}
+.tableDesign tr th:first-child {
+    border-top-left-radius: 10px;
+}
+.tableDesign tr th:last-child {
+    border-top-right-radius: 10px;
+}
+.tableDesign tr td {
+    padding: 16px 40px;
+}
+.tableDesign tr {
+    transition: all 0.2s ease;
+}
+.tableDesign tr:hover{
+    background-color: rgba(85, 84, 84, .5) !important;
+    transform: scale(1.01);
+    cursor: pointer;
+}
+.tableDesign tr:nth-child(even){
+    background-color: rgba(65, 65, 65, .5);
+}

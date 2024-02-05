@@ -1,0 +1,36 @@
+/* MODAL */
+modalcontainer {
+    z-index: 100;
+    position: fixed;
+    height: calc(100% - 120px);
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+modal {
+    border-radius: 10px;
+    background-color: rgba(43, 42, 40, .9);
+    box-shadow: 0px 0px 12px 0px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+modaltitle {
+    padding: 10px 0px;
+    background-color: rgba(66, 66, 66, .4);
+    width: 100%;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+modalinputs {
+    padding: 20px;
+}
+modaldecision {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

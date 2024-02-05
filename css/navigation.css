@@ -1,0 +1,73 @@
+@media not screen and (max-width: 1000px) {
+    nav > ul {
+        display: block !important;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    navtoggler {
+        display: flex !important;
+    }
+}
+nav {
+    background-color: rgba(66, 66, 66, .9);
+    overflow: auto;
+    user-select: none;
+}
+nav ul {
+    text-decoration: none;
+    list-style: none;
+    padding: 0px 16px;
+}
+nav ul:not(:first-child) {
+    background-color: rgba(82, 81, 81, .5);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+nav ul li {
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+nav ul li:hover, navtoggler:hover {
+    background-color: rgba(44, 44, 44, .7);
+}
+nav ul li:active {
+    box-shadow: inset 0px 0px 4px 0px black;
+    background-color: rgba(58, 58, 58, .5);
+}
+.navtitle {
+    padding-right: 8px;
+    display: flex;
+    align-items: center;
+}
+.navicon {
+    margin-right: 10px;
+    font-size: 18px;
+}
+navtoggler {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+}
+navtoggler > span {
+    rotate: 270deg;
+}
+.listopen {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: rgb(44, 44, 44);
+}
+.listopen:hover {
+    background-color: rgb(107, 107, 107);
+}
+.selected {
+    background-color: rgba(51, 95, 171, .9);
+}
