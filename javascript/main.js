@@ -1,3 +1,4 @@
+/* MODAL CREATION */
 function exitModal(exitbtn){
     $(exitbtn).closest('modalcontainer').fadeOut(200);
 }
@@ -40,7 +41,7 @@ function addModalOption(displayName,type,options){
 
 $(document).ready(function(){
 
-    /* CHARTJS Settings */
+    /* CHARTJS Default Settings */
     Chart.defaults.color = "white";
     Chart.defaults.borderColor = "black";
     Chart.defaults.font.size = 16;
