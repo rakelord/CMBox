@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\CMController\\api\\api.csproj": {}
+    "C:\\dev\\NexoAssets\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\CMController\\api\\api.csproj": {
+    "C:\\dev\\NexoAssets\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\CMController\\api\\api.csproj",
+        "projectUniqueName": "C:\\dev\\NexoAssets\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Dev\\CMController\\api\\api.csproj",
+        "projectPath": "C:\\dev\\NexoAssets\\api\\api.csproj",
         "packagesPath": "C:\\Users\\magnu\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\CMController\\api\\obj\\",
+        "outputPath": "C:\\dev\\NexoAssets\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\magnu\\AppData\\Roaming\\NuGet\\NuGet.Config",
