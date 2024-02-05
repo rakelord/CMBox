@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KAPMHSvjXdEzBmg3VoNjzy7SmUuTO5HYDY2SY2wlz10H3yQjDkVub/nixwjHfIWuSad3TjkaZdUoAWnBZ5nY0A==",
+  "dgSpecHash": "pXWcuHSQYqdw3NFvuB6tGBzYrY5b+pz7NPRGopfB1R46+QlvWnJPaDxO70k6J0fYikGzqh+YbE37NRlvKTm5Ew==",
   "success": true,
-  "projectFilePath": "C:\\Dev\\NexoAssets\\api\\api.csproj",
+  "projectFilePath": "C:\\dev\\NexoAssets\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\magnu\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.1\\microsoft.aspnetcore.openapi.8.0.1.nupkg.sha512",
     "C:\\Users\\magnu\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
