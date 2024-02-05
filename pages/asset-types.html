@@ -1,5 +1,5 @@
 <div>
-    <pageheader><pagetitle><span class="material-symbols-outlined" style="margin-right: 10px;font-size: 32">stack</span>Client types</pagetitle><managebuttons><div class="btn btn-green" id="newclienttype"><span class="material-symbols-outlined">add</span></div><div class="btn btn-red" id="deleteclienttypes"><span class="material-symbols-outlined">delete</span></div></managebuttons></pageheader>
+    <pageheader><pagetitle><span class="material-symbols-outlined" style="margin-right: 10px;font-size: 32">stack</span>Asset types</pagetitle><managebuttons><div class="btn btn-green" id="newassettype"><span class="material-symbols-outlined">add</span></div><div class="btn btn-red" id="deleteassettypes"><span class="material-symbols-outlined">delete</span></div></managebuttons></pageheader>
     <sections>
         <mainsection>
             <div class="loader"><div class="spinner"></div></div>
@@ -29,7 +29,7 @@
     </sections>
 </div>
 <script>
-    $('#newclienttype').on('click',function(){
+    $('#newassettype').on('click',function(){
         let newClientTypeForm = {
             "parameters": [
                 {
@@ -46,6 +46,6 @@
         };
 
         $('modalcontainer').fadeIn(200);
-        $('modalinputs').html(addModalForm(newClientTypeForm,"New client type","Create"));
+        $('modalinputs').html(addModalForm(newClientTypeForm,"New asset type","Create"));
     });
 </script>
