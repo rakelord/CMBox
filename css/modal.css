@@ -2,7 +2,7 @@
 modalcontainer {
     z-index: 100;
     position: fixed;
-    height: calc(100% - 120px);
+    height: calc(100% - 130px);
     width: 100%;
     background-color: rgba(0,0,0,0.4);
     display: flex;

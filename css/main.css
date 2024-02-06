@@ -64,7 +64,7 @@ headertitle {
 
 /* MAIN PAGE */
 main {
-    min-width: 500px;
+    min-width: 350px;
     display: flex;
     height: calc(100vh - 130px);
     background-image: url("/images/bg.jpg");
