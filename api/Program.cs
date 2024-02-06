@@ -1,6 +1,7 @@
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.WebEncoders.Testing;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +18,8 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-app.MapPost("/navigation", ([FromBody] string jsonstring) => {
-    
+app.MapPost("/navigation", (Navigation nav) => {
+    return nav;
 }).WithName("PostNavigation").WithOpenApi();
 
 app.MapGet("/test", () => {
@@ -28,7 +29,11 @@ app.MapGet("/test", () => {
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+
+record Navigation(string DisplayName, string PageName, bool Parent, string Icon){
+
+}
+/* record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+}*/
