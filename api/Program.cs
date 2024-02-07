@@ -83,7 +83,7 @@ app.MapGet("/navigation", () => {
             DisplayName = reader.GetString(displayNameIndex),
             Page_Name = reader.GetString(pageNameIndex),
             Nav_Parent = reader.GetBoolean(navParentIndex),
-            Parent_Id = reader.IsDBNull(parentIdIndex) ? null : (int?)reader.GetInt32(parentIdIndex),
+            Parent_Id = reader.IsDBNull(parentIdIndex) ? null : reader.GetInt32(parentIdIndex),
             Icon = reader.IsDBNull(iconIndex) ? null : reader.GetString(iconIndex)
         };
 
