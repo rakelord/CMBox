@@ -67,16 +67,24 @@ app.MapGet("/navigation", () => {
 
     using MySqlDataReader reader = command.ExecuteReader();
     var navlist = new List<Navigation>();
+
+    int idIndex = 0;
+    int displayNameIndex = 1;
+    int pageNameIndex = 2;
+    int navParentIndex = 3;
+    int parentIdIndex = 4;
+    int iconIndex = 5;
+
     while (reader.Read())
     {
         Navigation nav = new()
         {
-            Id = (int)reader[0],
-            DisplayName = (string)reader[1],
-            Page_Name = (string)reader[2],
-            Nav_Parent = (bool)reader[3],
-            Parent_Id = (reader[4] == DBNull.Value) ? null : (int)reader[4],
-            Icon = (reader[5] == DBNull.Value) ? null : (string)reader[5]
+            Id = reader.GetInt32(idIndex),
+            DisplayName = reader.GetString(displayNameIndex),
+            Page_Name = reader.GetString(pageNameIndex),
+            Nav_Parent = reader.GetBoolean(navParentIndex),
+            Parent_Id = reader.IsDBNull(parentIdIndex) ? null : (int?)reader.GetInt32(parentIdIndex),
+            Icon = reader.IsDBNull(iconIndex) ? null : reader.GetString(iconIndex)
         };
 
         navlist.Add(nav);
