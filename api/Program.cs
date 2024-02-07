@@ -39,14 +39,14 @@ app.MapPost("/navigation", (Navigation nav) => {
     DBConnection.Open();
 
     var Query = @"INSERT INTO Navigation (displayname,page_name,nav_parent,parent_id,icon) VALUES (@displayname,@page_name,@nav_parent,@parent_id,@icon);";
-    MySqlCommand myCommand = new(Query, DBConnection);
-    myCommand.Parameters.AddWithValue("@displayname", nav.DisplayName);
-    myCommand.Parameters.AddWithValue("@page_name", nav.Page_Name);
-    myCommand.Parameters.AddWithValue("@nav_parent", nav.Nav_Parent);
-    myCommand.Parameters.AddWithValue("@parent_id", nav.Parent_Id);
-    myCommand.Parameters.AddWithValue("@icon", nav.Icon);
+    MySqlCommand command = new(Query, DBConnection);
+    command.Parameters.AddWithValue("@displayname", nav.DisplayName);
+    command.Parameters.AddWithValue("@page_name", nav.Page_Name);
+    command.Parameters.AddWithValue("@nav_parent", nav.Nav_Parent);
+    command.Parameters.AddWithValue("@parent_id", nav.Parent_Id);
+    command.Parameters.AddWithValue("@icon", nav.Icon);
     
-    myCommand.ExecuteNonQuery();
+    command.ExecuteNonQuery();
     DBConnection.Close();
 
     return nav;
@@ -63,9 +63,9 @@ app.MapGet("/navigation", () => {
     DBConnection.Open();
 
     var Query = @"SELECT * FROM Navigation;";
-    MySqlCommand myCommand = new(Query, DBConnection);
+    MySqlCommand command = new(Query, DBConnection);
 
-    using MySqlDataReader reader = myCommand.ExecuteReader();
+    using MySqlDataReader reader = command.ExecuteReader();
     var navlist = new List<Navigation>();
     while (reader.Read())
     {
