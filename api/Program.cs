@@ -26,6 +26,11 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
+/* 
+######################
+## POST NAVIGATIONS ##
+######################
+*/
 app.MapPost("/navigation", (Navigation nav) => {
 
     // Connect to Database
@@ -48,7 +53,11 @@ app.MapPost("/navigation", (Navigation nav) => {
     return nav;
 }).WithName("NewNavigation").WithOpenApi();
 
-
+/* 
+#####################
+## GET NAVIGATIONS ##
+#####################
+*/
 app.MapGet("/navigation", () => {
     // Connect to Database
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -69,17 +78,14 @@ app.MapGet("/navigation", () => {
             Page_Name = (string)reader[2],
             Nav_Parent = (bool)reader[3],
             Parent_Id = (reader[4] == DBNull.Value) ? null : (int)reader[4],
-            Icon = (string?)reader[5]
+            Icon = (reader[5] == DBNull.Value) ? null : (string)reader[5]
         };
 
         navlist.Add(nav);
     }
+    MySQLConnection.Close();
+
     return navlist;
 }).WithName("GetNavigationList").WithOpenApi();
 
 app.Run();
-
-/* record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}*/
