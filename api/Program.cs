@@ -19,6 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
@@ -34,13 +35,11 @@ app.UseHttpsRedirection();
 app.MapPost("/navigation", (Navigation nav) => {
 
     // Connect to Database
-    MySqlConnection MySQLConnection;
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    MySQLConnection = new MySqlConnection(connectionString);
-    MySQLConnection.Open();
+    MySqlConnection DBConnection = new(connectionString);
+    DBConnection.Open();
 
     var Query = @"INSERT INTO Navigation (displayname,page_name,nav_parent,parent_id,icon) VALUES (@displayname,@page_name,@nav_parent,@parent_id,@icon);";
-    MySqlCommand myCommand = new(Query, MySQLConnection);
+    MySqlCommand myCommand = new(Query, DBConnection);
     myCommand.Parameters.AddWithValue("@displayname", nav.DisplayName);
     myCommand.Parameters.AddWithValue("@page_name", nav.Page_Name);
     myCommand.Parameters.AddWithValue("@nav_parent", nav.Nav_Parent);
@@ -48,7 +47,7 @@ app.MapPost("/navigation", (Navigation nav) => {
     myCommand.Parameters.AddWithValue("@icon", nav.Icon);
     
     myCommand.ExecuteNonQuery();
-    MySQLConnection.Close();
+    DBConnection.Close();
 
     return nav;
 }).WithName("NewNavigation").WithOpenApi();
@@ -60,12 +59,11 @@ app.MapPost("/navigation", (Navigation nav) => {
 */
 app.MapGet("/navigation", () => {
     // Connect to Database
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    MySqlConnection MySQLConnection = new(connectionString);
-    MySQLConnection.Open();
+    MySqlConnection DBConnection = new(connectionString);
+    DBConnection.Open();
 
     var Query = @"SELECT * FROM Navigation;";
-    MySqlCommand myCommand = new(Query, MySQLConnection);
+    MySqlCommand myCommand = new(Query, DBConnection);
 
     using MySqlDataReader reader = myCommand.ExecuteReader();
     var navlist = new List<Navigation>();
@@ -83,7 +81,7 @@ app.MapGet("/navigation", () => {
 
         navlist.Add(nav);
     }
-    MySQLConnection.Close();
+    DBConnection.Close();
 
     return navlist;
 }).WithName("GetNavigationList").WithOpenApi();
