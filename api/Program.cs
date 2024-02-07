@@ -7,6 +7,9 @@ using Microsoft.Extensions.WebEncoders.Testing;
 using MySql.Data.MySqlClient;
 using Models;
 using Mysqlx.Expr;
+using Microsoft.AspNetCore.SignalR;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,15 +57,24 @@ app.MapGet("/navigation", () => {
 
     var Query = @"SELECT * FROM Navigation;";
     MySqlCommand myCommand = new(Query, MySQLConnection);
-    
-    using (var reader = myCommand.ExecuteReader())
+
+    using MySqlDataReader reader = myCommand.ExecuteReader();
+    var navlist = new List<Navigation>();
+    while (reader.Read())
     {
-        while (reader.Read())
+        Navigation nav = new()
         {
-            Console.WriteLine(String.Format("{0}", reader[0]));
-        }
+            Id = (int)reader[0],
+            DisplayName = (string)reader[1],
+            Page_Name = (string)reader[2],
+            Nav_Parent = (bool)reader[3],
+            Parent_Id = (reader[4] == DBNull.Value) ? null : (int)reader[4],
+            Icon = (string?)reader[5]
+        };
+
+        navlist.Add(nav);
     }
-    MySQLConnection.Close();
+    return navlist;
 }).WithName("GetNavigationList").WithOpenApi();
 
 app.Run();
