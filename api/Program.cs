@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.WebEncoders.Testing;
 using MySql.Data.MySqlClient;
+using Models;
+using Mysqlx.Expr;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,30 +31,42 @@ app.MapPost("/navigation", (Navigation nav) => {
     MySQLConnection = new MySqlConnection(connectionString);
     MySQLConnection.Open();
 
-    var Query = @"INSERT INTO Navigation (displayname,pagename,parent,icon) VALUES (@displayname,@pagename,@parent,@icon);";
-    MySqlCommand myCommand = new MySqlCommand(Query, MySQLConnection);
+    var Query = @"INSERT INTO Navigation (displayname,page_name,nav_parent,parent_id,icon) VALUES (@displayname,@page_name,@nav_parent,@parent_id,@icon);";
+    MySqlCommand myCommand = new(Query, MySQLConnection);
     myCommand.Parameters.AddWithValue("@displayname", nav.DisplayName);
-    myCommand.Parameters.AddWithValue("@pagename", nav.PageName);
-    myCommand.Parameters.AddWithValue("@parent", nav.Parent);
+    myCommand.Parameters.AddWithValue("@page_name", nav.Page_Name);
+    myCommand.Parameters.AddWithValue("@nav_parent", nav.Nav_Parent);
+    myCommand.Parameters.AddWithValue("@parent_id", nav.Parent_Id);
     myCommand.Parameters.AddWithValue("@icon", nav.Icon);
     
     myCommand.ExecuteNonQuery();
     MySQLConnection.Close();
 
     return nav;
-}).WithName("PostNavigation").WithOpenApi();
+}).WithName("NewNavigation").WithOpenApi();
 
-app.MapGet("/test", () => {
-    var test = "123".ToArray();
-    return test;
-}).WithName("GetTest").WithOpenApi();
+
+app.MapGet("/navigation", () => {
+    // Connect to Database
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    MySqlConnection MySQLConnection = new(connectionString);
+    MySQLConnection.Open();
+
+    var Query = @"SELECT * FROM Navigation;";
+    MySqlCommand myCommand = new(Query, MySQLConnection);
+    
+    using (var reader = myCommand.ExecuteReader())
+    {
+        while (reader.Read())
+        {
+            Console.WriteLine(String.Format("{0}", reader[0]));
+        }
+    }
+    MySQLConnection.Close();
+}).WithName("GetNavigationList").WithOpenApi();
 
 app.Run();
 
-
-record Navigation(string DisplayName, string PageName, bool Parent, string Icon){
-
-}
 /* record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
