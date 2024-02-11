@@ -1,3 +1,9 @@
+/* SUPPORTING FUNCTIONS */
+function getDate(date){
+    let dateOutput = new Date(date);
+    return dateOutput.toLocaleString();
+}
+
 /* MODAL CREATION */
 function exitModal(exitbtn){
     $(exitbtn).closest('modalcontainer').fadeOut(200);

@@ -6,5 +6,7 @@ namespace Models {
         public bool Nav_Parent { get; set; }
         public int? Parent_Id { get; set; }
         public string? Icon { get; set; }
+        public DateTime Changed_Date { get; set; }
+        public DateTime Creation_Date { get; set; }
     }
 }
