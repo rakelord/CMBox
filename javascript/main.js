@@ -4,26 +4,41 @@ function getDate(date){
     return dateOutput.toLocaleString();
 }
 
+function isEmpty(obj) {
+    for (const prop in obj) {
+      if (Object.hasOwn(obj, prop)) {
+        return false;
+      }
+    }
+    return true;
+}
+
+function databaseError(){
+    $('modalcontainer').fadeIn(200);
+    $('modalinputs').html(addModalForm("Database error, could not connect","Error",""));
+}
+
 /* MODAL CREATION */
 function exitModal(exitbtn){
     $(exitbtn).closest('modalcontainer').fadeOut(200);
 }
 
-function addModalForm(formParameters,modalTitle,modalFinish){
+function addModalForm(formParameters,modalTitle,modalDecision){
     $('modaltitle').html(modalTitle);
-    let form = '<table class="formTableDesign">';
-    for (let parameter of formParameters['parameters']){
-        form += addModalOption(parameter['displayName'],parameter['type'],parameter['options']);
-    }
-    form += '</table>';
-
-    modalDecisions = "";
-    if (modalFinish == 'Save'){
-        modalDecisions += '<optionbtn class="btn btn-green">SAVE</optionbtn><optionbtn class="btn btn-red" onclick="exitModal(this)">EXIT</optionbtn>';
+    let form;
+    if (typeof formParameters === 'string'){ /* IF WE ONLY SEND STRING THEN OUTPUT TEXT ONLY */
+        form = formParameters;
     }
     else {
-        modalDecisions += '<optionbtn class="btn btn-green">CREATE</optionbtn><optionbtn class="btn btn-red" onclick="exitModal(this)">EXIT</optionbtn>';
+        form = '<table class="formTableDesign">';
+        for (let parameter of formParameters['parameters']){
+            form += addModalOption(parameter['displayName'],parameter['type'],parameter['options']);
+        }
+        form += '</table>';
     }
+    
+
+    modalDecisions = addModalDecision(modalDecision);
     $('modaldecision').html(modalDecisions);
 
     return form;
@@ -43,6 +58,16 @@ function addModalOption(displayName,type,options){
     row += '<td>'+displayName+'</td><td><input class="formvalue" type="'+type+'" /></td>';
     row += '</tr>';
     return row;
+}
+
+function addModalDecision(modalType) {
+    if (modalType == 'CREATE'){
+        return '<optionbtn class="btn btn-green">CREATE</optionbtn><optionbtn class="btn btn-red" onclick="exitModal(this)">EXIT</optionbtn>';
+    }
+    else if (modalType == 'SAVE'){
+        return '<optionbtn class="btn btn-green">SAVE</optionbtn><optionbtn class="btn btn-red" onclick="exitModal(this)">EXIT</optionbtn>';
+    }
+    return '<optionbtn class="btn btn-blue" onclick="exitModal(this)">OK</optionbtn>';
 }
 
 $(document).ready(function(){

@@ -45,6 +45,9 @@
         beforeSend: function(){
             $('mainsection').children().eq(0).fadeIn(200);
         },
+        error: function(){
+            databaseError();
+        },
         complete: function(){
             $('mainsection').children().eq(0).fadeOut(200);
         }
