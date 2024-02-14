@@ -21,7 +21,7 @@
 }
 .tableDesign tr:hover{
     background-color: rgba(85, 84, 84, .5) !important;
-    transform: scale(1.01);
+    /* transform: scale(1.01); */
     cursor: pointer;
 }
 .tableDesign tr:nth-child(even){
