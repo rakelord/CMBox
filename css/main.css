@@ -76,7 +76,7 @@ main {
     }
 }
 mainpage {
-    background-color: rgba(43, 42, 40, .4);
+    /* background-color: rgba(43, 42, 40, .2); */
     position: relative;
     display: flex;
     flex: 1 0;
@@ -92,7 +92,7 @@ page > div {
     position: relative;
     padding: 30px;
     border-radius: 10px;
-    background-color: rgba(43, 42, 40, .4);
+    background-color: rgba(43, 42, 40, .6);
     display: flex;
     flex-direction: column;
 }
