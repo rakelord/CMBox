@@ -30,7 +30,7 @@
 </div>
 <script>
     $('#newassettype').on('click',function(){
-        let newAssetTypeForm = {
+        let AssetTypeParams = {
             "parameters": [
                 {
                     "displayName": "Type name",
@@ -44,11 +44,6 @@
                 }
             ]
         };
-
-        $('modalcontainer').fadeIn(200);
-        $('modalinputs').html(addModalForm(newAssetTypeForm,"New asset type","CREATE"));
-
-        /* SELECT DESIGN */
-        $('.js-example-basic-single').select2();
+        openCreateModal(AssetTypeParams,"New asset type");
     });
 </script>

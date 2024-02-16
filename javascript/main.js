@@ -70,6 +70,95 @@ function addModalDecision(modalType) {
     return '<optionbtn class="btn btn-blue" onclick="exitModal(this)">OK</optionbtn>';
 }
 
+function openCreateModal(Parameters,Title) {
+    $('modalcontainer').fadeIn(200);
+    $('modalinputs').html(addModalForm(Parameters,Title,"CREATE"));
+    $('.js-example-basic-single').select2();
+}
+function openEditAssetModal(Parameters,Title) {
+    $('modalcontainer').fadeIn(200);
+    $('modalinputs').html(addModalForm(Parameters,Title,"SAVE"));
+    $('.js-example-basic-single').select2();
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+var mainColumNames = "";
+function loadMainTable(apiUrl){
+    $.ajax({
+        type: 'GET',
+        url: apiUrl,
+        success: function(apiOutput){
+            /* CREATE TABLE HEADER */
+            let columnNames = Object.keys(apiOutput[0]);
+            mainColumNames = columnNames;
+            let tableHeader = '<tr><th><input type="checkbox" /></th>';
+            $.each(columnNames, function(ci, column){
+                tableHeader += '<th>'+capitalizeFirstLetter(column.replace("_"," "))+'</th>';
+            });
+            tableHeader += '</tr>';
+            $('#maintable thead').append(tableHeader);
+
+            /* CREATE TABLE BODY */
+            $.each(apiOutput, function(ri, rowData){
+                let row = '<tr><td><input type="checkbox" /></td>';
+                $.each(columnNames, function(ci, column){
+                    if (column.endsWith('_date')){
+                        row += '<td>'+getDate(rowData[column])+'</td>';
+                    }
+                    else {
+                        row += '<td>'+rowData[column]+'</td>';
+                    }
+                });
+                row += '</tr>';
+                $('#maintable tbody').append(row);
+            });
+        },
+        beforeSend: function(){
+            $('mainsection').children().eq(0).fadeIn(200);
+        },
+        error: function(){
+            databaseError();
+        },
+        complete: function(){
+            $('mainsection').children().eq(0).fadeOut(200);
+        }
+    });
+}
+
+function addToMainTable(PageTitle){
+    let Params = {
+        "parameters": []
+    };
+    let skipInputs = ["creation_date","changed_date"];
+    $.each(mainColumNames, function(ci, column){
+        if (!(skipInputs).includes(column)){
+            Params.parameters.push({
+                "displayName": capitalizeFirstLetter(column.replace("_"," ")),
+                "type": "text",
+                "options": null,
+            })
+        }
+    });
+    openCreateModal(Params,"New "+PageTitle);
+}
+
+function deleteFromMainTable(selectedObjects){
+    let objectsToDelete = [];
+    $.each(selectedObjects, function(index, object){
+        objectsToDelete += $(object).parent().next('td').text();
+    });
+    if (isEmpty(objectsToDelete)){
+        alert("You need to select an item!");
+        return "";
+    }
+    if (confirm("Are you sure you want to delete item(s)? "+objectsToDelete)){
+        alert("DELETED");
+    }
+}
+
 $(document).ready(function(){
 
     /* CHARTJS Default Settings */
@@ -116,7 +205,7 @@ $(document).ready(function(){
                 type: 'GET',
                 url: "../pages/"+pagename+'.html',
                 success: function(html){
-                    $('title').html("NexoAssets - "+pagename);
+                    $('title').html("NexoAssets - "+capitalizeFirstLetter(pagename));
                     $('page').html(html);
                 },
                 beforeSend: function(){

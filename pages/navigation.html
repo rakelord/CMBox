@@ -1,21 +1,10 @@
 <div>
-    <pageheader><pagetitle><span class="material-symbols-outlined" style="margin-right: 10px;font-size: 32">account_tree</span>Navigation structure</pagetitle><managebuttons><div class="btn btn-green" id="newnavigation"><span class="material-symbols-outlined">add</span></div><div class="btn btn-red" id="deletenavigation"><span class="material-symbols-outlined">delete</span></div></managebuttons></pageheader>
+    <pageheader><pagetitle><span class="material-symbols-outlined" style="margin-right: 10px;font-size: 32">account_tree</span>Navigation</pagetitle><managebuttons><div class="btn btn-green" onclick="addToMainTable('Navigation')"><span class="material-symbols-outlined">add</span></div><div class="btn btn-red" onclick="deleteFromMainTable($('#maintable input:checked'))"><span class="material-symbols-outlined">delete</span></div></managebuttons></pageheader>
     <sections>
         <mainsection>
             <div class="loader"><div class="spinner"></div></div>
-            <table class="tableDesign" id="navigationtable">
+            <table class="tableDesign" id="maintable">
                 <thead>
-                    <tr>
-                        <th style="width: 0;"><input type="checkbox" /></th>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Page name</th>
-                        <th>Is parent</th>
-                        <th>Parent</th>
-                        <th>Icon</th>
-                        <th>Change date</th>
-                        <th>Creation date</th>
-                    </tr>
                 </thead>
                 <tbody>
                 </tbody>
@@ -24,32 +13,5 @@
     </sections>
 </div>
 <script>
-    $.ajax({
-        type: 'GET',
-        url: "http://localhost:5126/navigation",
-        success: function(allNavigations){
-            $.each(allNavigations, function(index, navigation){
-                let checkbox = '<td><input type="checkbox" /></td>';
-                let id = '<td>'+navigation.id+'</td>';
-                let name = '<td>'+navigation.displayName+'</td>';
-                let pagename = '<td>'+navigation.page_Name+'</td>';
-                let isParent = '<td>'+navigation.nav_Parent+'</td>';
-                let parent_Id = '<td>'+navigation.parent_Id+'</td>';
-                let icon = '<td>'+navigation.icon+'</td>';
-                let changed_Date = '<td>'+getDate(navigation.changed_Date)+'</td>';
-                let creation_Date = '<td>'+getDate(navigation.creation_Date)+'</td>';
-                let tableRow = '<tr>'+checkbox+id+name+pagename+isParent+parent_Id+icon+changed_Date+creation_Date+'</tr>';
-                $('#navigationtable tbody').append(tableRow);
-            });
-        },
-        beforeSend: function(){
-            $('mainsection').children().eq(0).fadeIn(200);
-        },
-        error: function(){
-            databaseError();
-        },
-        complete: function(){
-            $('mainsection').children().eq(0).fadeOut(200);
-        }
-    });
+    loadMainTable("http://localhost:5126/navigation");
 </script>

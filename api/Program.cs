@@ -42,12 +42,12 @@ app.MapPost("/navigation", (Navigation nav) => {
     MySqlConnection DBConnection = new(connectionString);
     DBConnection.Open();
 
-    var Query = @"INSERT INTO Navigation (displayname,page_name,nav_parent,parent_id,icon,changed_date,creation_date) VALUES (@displayname,@page_name,@nav_parent,@parent_id,@icon,@changeddate,@creationdate);";
+    var Query = @"INSERT INTO Navigation (Display_name,Page_name,Dropdown,Parent_id,icon,Changed_date,Creation_date) VALUES (@displayname,@page_name,@nav_parent,@parent_id,@icon,@changeddate,@creationdate);";
     MySqlCommand command = new(Query, DBConnection);
-    command.Parameters.AddWithValue("@displayname", nav.DisplayName);
-    command.Parameters.AddWithValue("@page_name", nav.Page_Name);
-    command.Parameters.AddWithValue("@nav_parent", nav.Nav_Parent);
-    command.Parameters.AddWithValue("@parent_id", nav.Parent_Id);
+    command.Parameters.AddWithValue("@displayname", nav.Display_name);
+    command.Parameters.AddWithValue("@page_name", nav.Page_name);
+    command.Parameters.AddWithValue("@nav_parent", nav.Dropdown);
+    command.Parameters.AddWithValue("@parent_id", nav.Parent_id);
     command.Parameters.AddWithValue("@icon", nav.Icon);
     command.Parameters.AddWithValue("@changeddate", DateTime.Now);
     command.Parameters.AddWithValue("@creationdate", DateTime.Now);
@@ -87,14 +87,14 @@ app.MapGet("/navigation", () => {
     {
         Navigation nav = new()
         {
-            Id = reader.GetInt32(idIndex),
-            DisplayName = reader.GetString(displayNameIndex),
-            Page_Name = reader.GetString(pageNameIndex),
-            Nav_Parent = reader.GetBoolean(navParentIndex),
-            Parent_Id = reader.IsDBNull(parentIdIndex) ? null : reader.GetInt32(parentIdIndex),
+            Unique_id = reader.GetInt32(idIndex),
+            Display_name = reader.GetString(displayNameIndex),
+            Page_name = reader.GetString(pageNameIndex),
+            Dropdown = reader.GetBoolean(navParentIndex),
+            Parent_id = reader.IsDBNull(parentIdIndex) ? null : reader.GetInt32(parentIdIndex),
             Icon = reader.IsDBNull(iconIndex) ? null : reader.GetString(iconIndex),
-            Changed_Date = reader.GetDateTime(changedDateIndex),
-            Creation_Date = reader.GetDateTime(creationDateIndex)
+            Changed_date = reader.GetDateTime(changedDateIndex),
+            Creation_date = reader.GetDateTime(creationDateIndex)
         };
 
         navlist.Add(nav);
