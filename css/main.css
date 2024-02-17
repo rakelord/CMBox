@@ -52,6 +52,10 @@ pagetitle {
     align-items: center;
     justify-content: space-between;
 }
+.pagetitleicon {
+    font-size: 36;
+    margin-right: 10px;
+}
 managebuttons {
     display: flex;
 }

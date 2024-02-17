@@ -166,7 +166,7 @@ function getPageInfo(pageName){
         url: apiUrl+pageName+'?page_name='+pageName,
         success: function(apiOutput){
             let pageData = apiOutput[0];
-            $('pagetitle').html('<span class="material-symbols-outlined" style="margin-right: 10px;font-size: 32">'+pageData.icon+'</span>'+pageData.display_name);
+            $('pagetitle').html('<span class="material-symbols-outlined pagetitleicon">'+pageData.icon+'</span>'+pageData.display_name);
         },
         error: function(){
             databaseError();
