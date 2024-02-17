@@ -1,2 +1,2 @@
-# NexoAssets
-Asset Management Database Software
+# RekanAssets
+Asset Management Inventory Software
