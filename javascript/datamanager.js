@@ -1,5 +1,4 @@
 /* Load Page */
-
 function getPageInfo(pageName){
     $.ajax({
         type: 'GET',
@@ -15,7 +14,6 @@ function getPageInfo(pageName){
 }
 
 /* Load data to Tables */
-
 var mainColumNames = "";
 var apiUrl = "http://localhost:5126/";
 function loadDataToTable(pageName,tableId,sectionType){
@@ -60,7 +58,6 @@ function loadDataToTable(pageName,tableId,sectionType){
 }
 
 /* ADD Data */
-
 function addToMainTable(PageTitle){
     let Params = {
         "parameters": []
@@ -79,7 +76,6 @@ function addToMainTable(PageTitle){
 }
 
 /* REMOVE Data */
-
 function deleteFromMainTable(selectedObjects){
     let objectsToDelete = [];
     $.each(selectedObjects, function(index, object){
