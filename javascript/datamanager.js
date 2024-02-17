@@ -37,12 +37,11 @@ function loadDataToTable(pageName,tableId,sectionType){
             $.each(apiOutput, function(ri, rowData){
                 let row = '<tr><td><input type="checkbox" /></td>';
                 $.each(columnNames, function(ci, column){
+                    let columnData = rowData[column];
                     if (column.endsWith('_date')){
-                        row += '<td>'+getDate(rowData[column])+'</td>';
+                        columnData = getDate(rowData[column])+'</td>';
                     }
-                    else {
-                        row += '<td>'+rowData[column]+'</td>';
-                    }
+                    row += '<td>'+columnData+'</td>';
                 });
                 row += '</tr>';
                 $('#'+tableId+' tbody').append(row);
