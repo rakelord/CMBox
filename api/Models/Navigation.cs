@@ -6,7 +6,7 @@ namespace Models {
         public bool Dropdown { get; set; }
         public int? Parent_id { get; set; }
         public string? Icon { get; set; }
-        public DateTime Changed_date { get; set; }
+        public DateTime? Changed_date { get; set; }
         public DateTime Creation_date { get; set; }
     }
 }

@@ -86,10 +86,11 @@ function capitalizeFirstLetter(string) {
 }
 
 var mainColumNames = "";
-function loadMainTable(apiUrl){
+var apiUrl = "http://localhost:5126/";
+function loadDataToTable(pageName,tableId,sectionType){
     $.ajax({
         type: 'GET',
-        url: apiUrl,
+        url: apiUrl+pageName,
         success: function(apiOutput){
             /* CREATE TABLE HEADER */
             let columnNames = Object.keys(apiOutput[0]);
@@ -99,7 +100,7 @@ function loadMainTable(apiUrl){
                 tableHeader += '<th>'+capitalizeFirstLetter(column.replace("_"," "))+'</th>';
             });
             tableHeader += '</tr>';
-            $('#maintable thead').append(tableHeader);
+            $('#'+tableId+' thead').append(tableHeader);
 
             /* CREATE TABLE BODY */
             $.each(apiOutput, function(ri, rowData){
@@ -113,17 +114,17 @@ function loadMainTable(apiUrl){
                     }
                 });
                 row += '</tr>';
-                $('#maintable tbody').append(row);
+                $('#'+tableId+' tbody').append(row);
             });
         },
         beforeSend: function(){
-            $('mainsection').children().eq(0).fadeIn(200);
+            $(sectionType).children().eq(0).fadeIn(200);
         },
         error: function(){
             databaseError();
         },
         complete: function(){
-            $('mainsection').children().eq(0).fadeOut(200);
+            $(sectionType).children().eq(0).fadeOut(200);
         }
     });
 }
@@ -157,6 +158,20 @@ function deleteFromMainTable(selectedObjects){
     if (confirm("Are you sure you want to delete item(s)? "+objectsToDelete)){
         alert("DELETED");
     }
+}
+
+function getPageInfo(pageName){
+    $.ajax({
+        type: 'GET',
+        url: apiUrl+pageName+'?page_name='+pageName,
+        success: function(apiOutput){
+            let pageData = apiOutput[0];
+            $('pagetitle').html('<span class="material-symbols-outlined" style="margin-right: 10px;font-size: 32">'+pageData.icon+'</span>'+pageData.display_name);
+        },
+        error: function(){
+            databaseError();
+        }
+    });
 }
 
 $(document).ready(function(){
@@ -203,7 +218,7 @@ $(document).ready(function(){
         if (pagename){
             $.ajax({
                 type: 'GET',
-                url: "../pages/"+pagename+'.html',
+                url: "../pages/template_page.html",
                 success: function(html){
                     $('title').html("NexoAssets - "+capitalizeFirstLetter(pagename));
                     $('page').html(html);

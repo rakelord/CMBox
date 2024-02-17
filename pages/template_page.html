@@ -1,0 +1,20 @@
+<div>
+    <pageheader><pagetitle></pagetitle><managebuttons><div class="btn btn-green" onclick="addToMainTable('Navigation')"><span class="material-symbols-outlined">add</span></div><div class="btn btn-red" onclick="deleteFromMainTable($('#maintable input:checked'))"><span class="material-symbols-outlined">delete</span></div></managebuttons></pageheader>
+    <sections>
+        <mainsection>
+            <div class="loader"><div class="spinner"></div></div>
+            <table class="tableDesign" id="maintable">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </mainsection>
+    </sections>
+</div>
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var startPage = urlParams.get('page');
+    getPageInfo(startPage);
+    loadDataToTable(startPage,"maintable","mainsection");
+</script>
