@@ -220,7 +220,7 @@ $(document).ready(function(){
                 type: 'GET',
                 url: "../pages/template_page.html",
                 success: function(html){
-                    $('title').html("NexoAssets - "+capitalizeFirstLetter(pagename));
+                    $('title').html("RekanAssets - "+capitalizeFirstLetter(pagename));
                     $('page').html(html);
                 },
                 beforeSend: function(){
