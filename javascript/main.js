@@ -218,7 +218,7 @@ $(document).ready(function(){
         if (pagename){
             $.ajax({
                 type: 'GET',
-                url: "../pages/template_page.html",
+                url: "../page.html",
                 success: function(html){
                     $('title').html("RekanAssets - "+capitalizeFirstLetter(pagename));
                     $('page').html(html);
