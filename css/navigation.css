@@ -2,11 +2,19 @@
     nav > ul {
         display: block !important;
     }
+    
 }
 @media only screen and (max-width: 1000px) {
     navtoggler {
         display: flex !important;
     }
+    leftpanel {
+        flex-direction: column;
+    }
+}
+leftpanel {
+    position: relative;
+    display: flex;
 }
 nav {
     background-color: rgba(66, 66, 66, .9);

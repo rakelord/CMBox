@@ -25,41 +25,44 @@
             <logo><img src="/images/rekanlogo.png" width="50" /></logo><headertitle>RekanAssets</headertitle>
         </header>
         <main>
-            <nav>
-                <ul>
-                    <li pagename="home" onclick="changePage(this)"><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">home</span>Home</div></li>
-                    <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle">Clients</div></li>
+            <leftpanel>
+                <!--<div class="loader" style="z-index: 20"><div class="spinner"></div></div>-->
+                <nav>
                     <ul>
-                        <li pagename="computers" onclick="changePage(this)"><div class="navtitle"><span class="material-symbols-outlined navicon">computer</span>Computers</div></li>
-                        <li><div class="navtitle"><span class="material-symbols-outlined navicon">phone_iphone</span>Mobile phones</div></li>
+                        <li pagename="home" onclick="changePage(this)"><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">home</span>Home</div></li>
+                        <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle">Clients</div></li>
+                        <ul>
+                            <li pagename="computers" onclick="changePage(this)"><div class="navtitle"><span class="material-symbols-outlined navicon">computer</span>Computers</div></li>
+                            <li><div class="navtitle"><span class="material-symbols-outlined navicon">phone_iphone</span>Mobile phones</div></li>
+                        </ul>
+                        <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle">Servers</div></li>
+                        <ul>
+                            <li><div class="navtitle"><span class="material-symbols-outlined navicon">cloud</span>Virtual servers</div></li>
+                            <li><div class="navtitle"><span class="material-symbols-outlined navicon">dns</span>Physical servers</div></li>
+                        </ul>
+                        <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle">Network</div></li>
+                        <ul>
+                            <li><div class="navtitle"><span class="material-symbols-outlined navicon">router</span>Routers</div></li>
+                            <li><div class="navtitle"><span class="material-symbols-outlined navicon">lan</span>Switches</div></li>
+                        </ul>
+                        <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle">Links</div></li>
+                        <ul>
+                            <li><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">groups</span>Employees</div></li>
+                            <li><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">diversity_3</span>Departments</div></li>
+                            <li><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">price_change</span>Cost center</div></li>
+                            <li><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">distance</span>Addresses</div></li>
+                            <li pagename="customers" onclick="changePage(this)"><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">holiday_village</span>Customers</div></li>
+                        </ul>
+                        <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle"><div class="navtitle">Admin</div></li>
+                        <ul>
+                            <li><div class="navtitle"><span class="material-symbols-outlined navicon">group</span>Users</div></li>
+                            <li pagename="navigation" onclick="changePage(this)"><div class="navtitle"><span class="material-symbols-outlined navicon">account_tree</span>Navigation</div></li>
+                            <li pagename="asset-types" onclick="changePage(this)"><div class="navtitle"><span class="material-symbols-outlined navicon">stack</span>Asset types</div></li>
+                        </ul>
                     </ul>
-                    <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle">Servers</div></li>
-                    <ul>
-                        <li><div class="navtitle"><span class="material-symbols-outlined navicon">cloud</span>Virtual servers</div></li>
-                        <li><div class="navtitle"><span class="material-symbols-outlined navicon">dns</span>Physical servers</div></li>
-                    </ul>
-                    <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle">Network</div></li>
-                    <ul>
-                        <li><div class="navtitle"><span class="material-symbols-outlined navicon">router</span>Routers</div></li>
-                        <li><div class="navtitle"><span class="material-symbols-outlined navicon">lan</span>Switches</div></li>
-                    </ul>
-                    <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle">Links</div></li>
-                    <ul>
-                        <li><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">groups</span>Employees</div></li>
-                        <li><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">diversity_3</span>Departments</div></li>
-                        <li><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">price_change</span>Cost center</div></li>
-                        <li><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">distance</span>Addresses</div></li>
-                        <li pagename="customers" onclick="changePage(this)"><div class="navtitle"><div class="navtitle"><span class="material-symbols-outlined navicon">holiday_village</span>Customers</div></li>
-                    </ul>
-                    <li class="navparent" onclick="toggleNavigationDropdown(this)"><div class="navtitle"><div class="navtitle">Admin</div></li>
-                    <ul>
-                        <li><div class="navtitle"><span class="material-symbols-outlined navicon">group</span>Users</div></li>
-                        <li pagename="navigation" onclick="changePage(this)"><div class="navtitle"><span class="material-symbols-outlined navicon">account_tree</span>Navigation</div></li>
-                        <li pagename="asset-types" onclick="changePage(this)"><div class="navtitle"><span class="material-symbols-outlined navicon">stack</span>Asset types</div></li>
-                    </ul>
-                </ul>
-                <navtoggler onclick="toggleNavigationMobile(this)"><span class="material-symbols-outlined">double_arrow</span></navtoggler>
-            </nav>
+                    <navtoggler onclick="toggleNavigationMobile(this)"><span class="material-symbols-outlined">double_arrow</span></navtoggler>
+                </nav>
+            </leftpanel>
             <mainpage>
                 <div class="loader" style="z-index: 20"><div class="spinner"></div></div>
                 <page></page>
