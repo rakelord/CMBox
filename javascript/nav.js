@@ -3,71 +3,67 @@ function loadNavigationPanel(){
         type: 'GET',
         url: apiUrl+"navigation",
         success: function(apiOutput){
+            let alreadyLoaded = [];
+
             let navPanel = document.createElement('ul');
 
-            /* DROPDOWNS WITHOUT PARENTS */
-            $.each(apiOutput,function(ni,navigation){
-                if (navigation.dropdown && !navigation.parent_id){
-                    /* Create dropdown */
-                    let Dropdown = document.createElement('li');
-                    Dropdown.classList.add('navparent');
-                    Dropdown.addEventListener("click", toggleNavigationDropdown);
-                    Dropdown.setAttribute('navid', navigation.unique_id);
-                    
-                    /* Create the title */
-                    let Title = document.createElement('div');
-                    Title.classList.add('navtitle');
-                    let TitleText = document.createTextNode(navigation.display_name);
-                    
-                    /* Add the Expand button */
-                    let expandBtn = document.createElement('span');
-                    expandBtn.classList.add('material-symbols-outlined');
-                    iconText = document.createTextNode("expand_more");
-                    expandBtn.appendChild(iconText);
-                    
-                    /* Combine the object */
-                    Title.appendChild(TitleText);
-                    Title.appendChild(expandBtn);
-                    Dropdown.appendChild(Title);
-                    
-                    /* Send to to the Navigation panel */
-                    navPanel.appendChild(Dropdown);
-                }
-            });
+            for (let i = 0; i < apiOutput.length; i++) {
+                $.each(apiOutput,function(index, navigation){
+                    if (!alreadyLoaded.includes(navigation.unique_id)){
+                        let navBtn = document.createElement('li');
+                        alreadyLoaded.push('navid'+navigation.unique_id);
+                        navBtn.setAttribute('navid', navigation.unique_id);
+                        
+                        let navIcon = document.createElement('span');
+                        navIcon.classList.add('material-symbols-outlined');
+                        navIcon.classList.add('navicon');
+                        navIcon.appendChild(document.createTextNode(navigation.icon));
 
-            /* BUTTONS WITHOUT PARENTS */
-            $.each(apiOutput,function(ni,navigation){
-                if (!navigation.dropdown && !navigation.parent_id) {
-                    /* Create button */
-                    let NavigationButton = document.createElement('li');
-                    NavigationButton.setAttribute('navid', navigation.unique_id);
+                        let Title = document.createElement('div');
+                        Title.classList.add('navtitle');
+                        
+                        Title.appendChild(navIcon);
+                        Title.appendChild(document.createTextNode(navigation.display_name));
+                        navBtn.appendChild(Title);
+                        
+                        if (navigation.dropdown){
+                            navBtn.classList.add('navparent');
+                            navBtn.addEventListener("click", toggleNavigationDropdown);
 
-                    /* Create the title */
-                    let Title = document.createElement('div');
-                    Title.classList.add('navtitle');
-                    let TitleText = document.createTextNode(navigation.display_name);
+                            let expandBtn = document.createElement('span');
+                            expandBtn.classList.add('material-symbols-outlined');
+                            expandBtn.classList.add('navdropdown');
+                            expandBtn.appendChild(document.createTextNode("expand_more"));
+                            Title.appendChild(expandBtn);
+                        }
+                        else {
+                            navBtn.addEventListener("click", changePage);
+                            navBtn.setAttribute('pagename', navigation.page_name);
+                        }
 
-                    /* Combine the object */
-                    Title.appendChild(TitleText);
-                    NavigationButton.appendChild(Title);
+                        if (navigation.parent_id){
+                            let parentObject = document.querySelector('[navid="'+navigation.parent_id+'"]');
+                            if (parentObject){
+                                parentObject.nextSibling.appendChild(navBtn);
+                                if (navigation.dropdown){
+                                    parentObject.nextSibling.appendChild(document.createElement('ul'));
+                                }
 
-                    /* Send to to the Navigation panel */
-                    navPanel.appendChild(NavigationButton);
-                }
-            });
+                                alreadyLoaded.push(navigation.unique_id);
+                            }
+                        }
+                        else {
+                            navPanel.appendChild(navBtn);
+                            if (navigation.dropdown){
+                                navPanel.appendChild(document.createElement('ul'));
+                            }
 
-            $.each(apiOutput,function(ni,navigation){
-                if (navigation.dropdown){
-                    /* Find parent */
-                    $('li[navid='+navigation.parent_id+']').click();
-                    
-                    /* Create button */
-                    let NavigationButton = document.createElement('li');
-                    NavigationButton.setAttribute('navid', navigation.unique_id);
-                }
-            });
-
-            $('nav').html(navPanel);
+                            alreadyLoaded.push(navigation.unique_id);
+                        }
+                    }
+                    $('nav').html(navPanel);
+                });
+            }
 
             /* Hide all Navigation children on first load */
             $('.navparent').next().hide();
@@ -100,8 +96,8 @@ function loadNavigationPanel(){
     });
 }
 
-function changePage(navBtn){
-    let pagename = $(navBtn).attr('pagename');
+function changePage(){
+    let pagename = $(this).attr('pagename');
     if (pagename){
         $.ajax({
             type: 'GET',
@@ -121,9 +117,9 @@ function changePage(navBtn){
         window.history.pushState(null, document.title, "index.html?page="+pagename);
     }
 
-    if (!navBtn.classList.contains('navparent')){
-        $(navBtn).closest('nav').find('li').removeClass('selected');
-        $(navBtn).addClass('selected');
+    if (!this.classList.contains('navparent')){
+        $(this).closest('nav').find('li').removeClass('selected');
+        $(this).addClass('selected');
     }
 }
 
@@ -131,12 +127,12 @@ function toggleNavigationDropdown(){
     if ($(this).next().is(':visible')){
         $(this).next().slideToggle(200);
         $(this).removeClass('listopen');
-        $(this).find('span').animate({rotate: '360deg'},100);
+        $(this).find('.navdropdown').animate({rotate: '360deg'},100);
     }
     else {
         $(this).next().slideToggle(200);
         $(this).addClass('listopen');
-        $(this).find('span').animate({rotate: '180deg'},100);
+        $(this).find('.navdropdown').animate({rotate: '180deg'},100);
     }
 }
 
@@ -153,5 +149,5 @@ function toggleNavigationMobile(toggler){
 }
 
 $(document).ready(function(){
-    //loadNavigationPanel();
+    loadNavigationPanel();
 });
