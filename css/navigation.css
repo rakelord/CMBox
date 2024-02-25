@@ -64,6 +64,8 @@ navtoggler {
     justify-content: center;
     padding: 8px;
     cursor: pointer;
+    background-color: rgba(66, 66, 66, .9);
+    transition: all 0.2s ease;
 }
 navtoggler > span {
     rotate: 270deg;
