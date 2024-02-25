@@ -25,7 +25,7 @@ function createNavigationButton(navigationJsonObject,navigationParent){
     navBtn.appendChild(Title);
 
     // If the button is a parent (dropdown)
-    if (navigationJsonObject.dropdown){
+    if (navigationJsonObject.is_parent){
         navBtn.classList.add('navparent');
         navBtn.addEventListener("click", toggleNavigationDropdown);
 
@@ -44,7 +44,7 @@ function createNavigationButton(navigationJsonObject,navigationParent){
             let parentObject = document.querySelector('[navid="'+navigationJsonObject.parent_id+'"]');
             if (parentObject){
                 parentObject.nextSibling.appendChild(navBtn);
-                if (navigationJsonObject.dropdown){
+                if (navigationJsonObject.is_parent){
                     parentObject.nextSibling.appendChild(document.createElement('ul'));
                 }
             }
@@ -52,7 +52,7 @@ function createNavigationButton(navigationJsonObject,navigationParent){
         else {
             let alreadyExist = document.querySelector('[navid="'+navigationJsonObject.unique_id+'"]');
             navPanel.appendChild(navBtn);
-            if (navigationJsonObject.dropdown){
+            if (navigationJsonObject.is_parent){
                 navPanel.appendChild(document.createElement('ul'));
             }
         }
