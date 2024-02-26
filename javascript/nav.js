@@ -113,7 +113,7 @@ function changePage(){
             type: 'GET',
             url: "../page.html",
             success: function(html){
-                $('title').html("RekanAssets - "+capitalizeFirstLetter(pagename));
+                $('title').html("RekanizedAssets - "+capitalizeFirstLetter(pagename));
                 $('page').html(html);
             },
             beforeSend: function(){
